@@ -18,7 +18,7 @@ complaint_dim.complaint_type = sr.complaint_type AND complaint_dim.descriptor =
 sr.descriptor
 inner join {{ref('location_dimension')}} as location_dimension on location_dimension.Borough = sr.borough
 and cast(location_dimension.zipcode as string) = cast(sr.incident_zip as string)
-inner join `data-project-329222.newyork_311.time` as time_dimension_open on time_dimension_open.fulltime = time(sr.created_date)
-inner join `data-project-329222.newyork_311.time` as time_dimension_closed on time_dimension_closed.fulltime = time(sr.closed_date)
+inner join {{ref('time_dimension')}} as time_dimension_open on time_dimension_open.fulltime = time(sr.created_date)
+inner join {{ref('time_dimension')}} as time_dimension_closed on time_dimension_closed.fulltime = time(sr.closed_date)
 
 

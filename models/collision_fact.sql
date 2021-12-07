@@ -5,4 +5,4 @@ from `data-project-329222.newyork_311.collisions` as col
     inner join {{ref('date_dimension')}}as date_dimension on date_dimension.DATE_DAY = date(col.timestamp)
     inner join {{ref('location_dimension')}} as location_dimension on location_dimension.Borough = col.borough 
     and cast(location_dimension.zipcode as int) =col.zip_code
-    inner join `data-project-329222.newyork_311.time` as time_dimension on time_dimension.fulltime = time(col.timestamp)
+    inner join {{ref('time_dimension')}} as time_dimension on time_dimension.fulltime = time(col.timestamp)
