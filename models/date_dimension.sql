@@ -1,10 +1,21 @@
-{{ config (
-    materialized="table"
-)}}
-
-{{ dbt_utils.date_spine(
+WITH DATE_SPINE AS (
+   {{ dbt_utils.date_spine(
     datepart="day",
-    start_date="cast('2020-01-01' as date)",
-    end_date="cast('2021-01-01' as date)"
+    start_date="cast('2015-01-01' as date)",
+    end_date="cast('2022-01-01' as date)"
    )
-}}
+  }}
+ 
+)
+SELECT
+ROW_NUMBER() OVER() as DATE_DIM_ID,
+CAST(DATE(DATE_DAY) AS DATE) AS DATE_DAY,
+EXTRACT(DAY FROM DATE_DAY) AS YEAR_DAY,
+FORMAT_DATE('%A', DATE_DAY) as Day_Name,
+EXTRACT(WEEK FROM DATE_DAY) AS YEAR_WEEK,
+EXTRACT(MONTH FROM DATE_DAY) AS YEAR_MONTH,
+EXTRACT(QUARTER FROM DATE_DAY) AS YEAR_QUARTER,
+EXTRACT(YEAR FROM DATE_DAY) AS YEAR
+ 
+ 
+FROM DATE_SPINE
