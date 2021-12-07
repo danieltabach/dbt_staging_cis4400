@@ -1,0 +1,14 @@
+version: 2
+
+name: 'gcp_shop'
+profile: 'gcp_shop'
+
+gcp_shop:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: abc-123
+      dataset: my_dataset
+      location: US

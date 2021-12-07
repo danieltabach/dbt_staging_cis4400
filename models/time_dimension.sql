@@ -1,0 +1,1 @@
+select * from `data-project-329222.newyork_311.time`
